@@ -52,10 +52,9 @@ export default class AddPost extends React.Component<AddPostProps, AddPostState>
             />
           </div>
         </form>
+          <h5>{body.length}/140</h5>
           <div className={"AddPost-buttonContainer"}>
             <Button
-                type={"submit"}
-                form={"form"}
                 onClick={this.submit}
                 label={"Submit"}
             />
@@ -75,8 +74,6 @@ export default class AddPost extends React.Component<AddPostProps, AddPostState>
   };
 
   private readonly textAreaChange = (event: any) => {
-
-
     this.setState({body: event.target.value})
   };
 
@@ -86,11 +83,23 @@ export default class AddPost extends React.Component<AddPostProps, AddPostState>
   };
 
   private readonly submit = () => {
+    const {body} = this.state;
     let request = new XMLHttpRequest();
 
     request.open('POST', 'https://jsonplaceholder.typicode.com/posts');
     request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    request.send(this.createPostJson());
+
+
+    if (body.length < 10 || body.length > 140) {
+      alert("Error character count must be >= 10 and <= 140");
+      return;
+
+    }
+    else {
+      request.send(this.createPostJson());
+    }
+
+    this.props.togglePopup();
   };
 }
 
