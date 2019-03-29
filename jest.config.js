@@ -1,5 +1,5 @@
 module.exports = {
-    collectCoverageFrom: ['src/**/*.{ts,tsx,mjs}'],
+    collectCoverageFrom: ['src/**/*.{ts,tsx}'],
     globals: {
       'ts-jest':{
           diagnostics: false
@@ -8,12 +8,13 @@ module.exports = {
 
     moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
     //enzyme
-    setupFiles: ['./src/setupTests.ts'],
+    setupFiles: ['<rootDir>/src/setupTests.ts'],
 
-
-    // The glob patterns Jest uses to detect test files
     testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
 
-    transform: {'^.+\\.tsx?$': 'ts-jest'}
+    transform: {'^.+\\.tsx?$': 'ts-jest'},
 
+    moduleNameMapper:{
+        ".*\\.css$": "<rootDir>/mocks/cssModule.js",
+    }
 };
