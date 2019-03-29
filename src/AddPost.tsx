@@ -1,6 +1,7 @@
 import React from 'react';
 import './css/AddPost.css';
 import Button from "./button";
+import {postRequest} from "./Request";
 
 export interface AddPostProps {
   closeForm: () => void;
@@ -86,11 +87,6 @@ export default class AddPost extends React.Component<AddPostProps, AddPostState>
 
   private readonly submit = () => {
     const {body} = this.state;
-    let request = new XMLHttpRequest();
-
-    request.open('POST', 'https://jsonplaceholder.typicode.com/posts');
-    request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-
 
     if (body.length < 10 || body.length > 140) {
       alert("Error character count must be >= 10 and <= 140");
@@ -98,7 +94,10 @@ export default class AddPost extends React.Component<AddPostProps, AddPostState>
 
     }
     else {
-      request.send(this.createPostJson());
+      postRequest(
+          'https://jsonplaceholder.typicode.com/posts',
+          this.createPostJson()
+      );
     }
 
     this.close();
