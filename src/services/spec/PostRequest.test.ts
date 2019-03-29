@@ -1,4 +1,4 @@
-import {getRequest, postRequest} from "../../Request";
+import {getRequest, postRequest} from "../Request";
 
 let onLoad: any;
 let onError: any;

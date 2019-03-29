@@ -1,0 +1,40 @@
+.Banner {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.Banner-error {
+    background-color: #f55a4e;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.Banner-success {
+    background-color:  #4CAF50;
+}
+
+.Banner-message {
+    display: inline-block;
+    margin: 8px;
+}
+
+.Banner-button {
+    display: inline-block;
+    color: #282c34;
+    border: 2px solid;
+    font-size: 12px;
+    border-radius: 100%;
+    width: 28px;
+    height: 28px;
+    background: none;
+    margin: 8px;
+}
+
+.Banner-button:focus {
+    text-decoration: none;
+    outline: none;
+}

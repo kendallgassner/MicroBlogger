@@ -31,7 +31,6 @@ export function getRequest(requestUri: string) {
 };
 
 
-
 export function postRequest(
     requestUri: string,
     data: string) {
@@ -40,7 +39,7 @@ export function postRequest(
         request.open("POST", requestUri);
 
         request.onload = () => {
-            if (request.status == 200) {
+            if (request.status == 200 || request.status == 201) {
                 resolve("Success");
             }
             else {
