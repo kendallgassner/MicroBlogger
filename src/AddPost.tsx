@@ -1,6 +1,6 @@
 import React from 'react';
 import './css/AddPost.css';
-import Button from "./button";
+import Button from "./button/button";
 import {postRequest} from "./services/Request";
 
 export interface AddPostProps {
