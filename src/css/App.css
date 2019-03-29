@@ -2,27 +2,6 @@
   text-align: center;
   background-color: #282c34;
   color: white;
-  height:100%
-}
-
-.App-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  margin-top: 24px;
-}
-
-
-.App-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-
-.App-postsContainer {
-  margin: 0px;
-  padding: 0px;
+  height:100%;
+  padding-top: 24px;
 }
