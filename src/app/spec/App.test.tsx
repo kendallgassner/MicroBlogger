@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from '../App';
 import {mount} from "enzyme";
-import Home from "../../Home";
+import Home from "../../home/Home";
 import Button from "../../button/button";
 
 function mountMock(this: any) {

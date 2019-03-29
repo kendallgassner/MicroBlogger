@@ -2,7 +2,7 @@ import React from 'react';
 import AddPost from "../AddPost";
 import '../css/App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Home from "../Home";
+import Home from "../home/Home";
 import Banner from "../banner/Banner";
 
 interface AppState {

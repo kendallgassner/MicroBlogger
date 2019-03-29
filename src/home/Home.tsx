@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Post, {PostProps} from './Post/Post';
-import './css/Home.css';
+import Post, {PostProps} from '../Post/Post';
+import '../css/Home.css';
 import {Link} from "react-router-dom";
-import Button from "./button/button";
-import {getRequest} from "./services/Request";
+import Button from "../button/button";
+import {getRequest} from "../services/Request";
 
 
 interface HomeProps {
