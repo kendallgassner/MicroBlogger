@@ -3,7 +3,7 @@ import './css/AddPost.css';
 import Button from "./button";
 
 export interface AddPostProps {
-  togglePopup: () => void;
+  closeForm: () => void;
 }
 
 export interface AddPostState {
@@ -22,12 +22,11 @@ export default class AddPost extends React.Component<AddPostProps, AddPostState>
   render() {
     const {userId, title, body} = this.state;
     return (
-      <div className="AddPost-overlay">
-        <div className={"AddPost-popup"} >
+        <div className={"AddPost"} >
         <form id="form">
-          <h1 className={"AddPost-text"}>Create a Post</h1>
+          <h1>Create a Post</h1>
           <div>
-            <label className={"AddPost-text"} htmlFor={"username"}> Username: </label>
+            <label  htmlFor={"username"}> Username: </label>
             <input
                 className={"AddPost-input"}
                 type={"text"}
@@ -35,7 +34,7 @@ export default class AddPost extends React.Component<AddPostProps, AddPostState>
                 value={userId}
                 onChange={this.usernameChange}
             />
-            <label className={"AddPost-text"} htmlFor={"title"}> Title: </label>
+            <label  htmlFor={"title"}> Title: </label>
             <input
                 className={"AddPost-input"}
                 type={"text"}
@@ -43,7 +42,7 @@ export default class AddPost extends React.Component<AddPostProps, AddPostState>
                 value={title}
                 onChange={this.titleChange}
             />
-            <label className={"AddPost-text"} htmlFor={"body"}> Content: </label>
+            <label htmlFor={"body"}> Content: </label>
             <textarea
                 id={"body"}
                 className={"AddPost-textArea"}
@@ -58,10 +57,9 @@ export default class AddPost extends React.Component<AddPostProps, AddPostState>
                 onClick={this.submit}
                 label={"Submit"}
             />
-            <Button onClick={this.props.togglePopup} label={"Close"}/>
+            <Button onClick={this.close} label={"Close"}/>
           </div>
         </div>
-      </div>
     );
   }
 
@@ -82,6 +80,10 @@ export default class AddPost extends React.Component<AddPostProps, AddPostState>
     return JSON.stringify({ "userId": userId,  "title": title,  "body": body});
   };
 
+  private readonly close = () => {
+    (this.props as any).history.goBack();
+  };
+
   private readonly submit = () => {
     const {body} = this.state;
     let request = new XMLHttpRequest();
@@ -99,8 +101,6 @@ export default class AddPost extends React.Component<AddPostProps, AddPostState>
       request.send(this.createPostJson());
     }
 
-    this.props.togglePopup();
+    this.close();
   };
 }
-
-
