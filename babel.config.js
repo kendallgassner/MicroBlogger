@@ -5,7 +5,4 @@ module.exports = {
         '@babel/preset-typescript',
         "@babel/preset-react",
     ],
-    "test": {
-        plugin: ["transform-es2015-modules-commonjs"]
-    }
 };

@@ -19,7 +19,7 @@ export default class Banner extends React.Component<ErrorProps> {
                 <button
                     onClick={closeBanner}
                     className={"Banner-button"}
-                    onKeyDown={closeBanner? this.onKeyDown: undefined}
+                    onKeyDown={this.onKeyDown}
 
                 >X</button>
             </div>
