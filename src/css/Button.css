@@ -8,7 +8,7 @@
 }
 
 .Button:focus {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50;
     text-decoration: none;
     outline: none;
 }

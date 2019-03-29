@@ -2,7 +2,7 @@ import React from 'react';
 import './css/Button.css';
 
 interface ButtonProps {
-    onClick: () => void;
+    onClick?: () => void;
     label: string;
     type?: "button"|"submit"|"reset";
     form?: string;
@@ -18,7 +18,7 @@ export default class Button extends React.Component<ButtonProps> {
                 form={form}
                 className={"Button"}
                 onClick={onClick}
-                onKeyDown={this.onKeyDown}
+                onKeyDown={onClick? this.onKeyDown: undefined}
             >
                 <h3>{label}</h3>
             </button>
@@ -28,7 +28,7 @@ export default class Button extends React.Component<ButtonProps> {
 
     private readonly onKeyDown = (event : any) => {
         if (event.key == 'Enter') {
-            this.props.onClick();
+            this.props.onClick!();
         }
     }
 }
