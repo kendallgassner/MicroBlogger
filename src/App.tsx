@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './App.css';
+import Post, {PostProps} from './Post';
+import AddPost from "./AddPost";
+import './css/App.css';
+import Button from "./button";
 
-interface message {
-    userId: number;
-    id: number;
-    title: string;
-    body: string;
+interface AppState {
+    showAddPost: boolean;
 }
 
-export default class App extends React.Component {
+export default class App extends React.Component<{}, AppState> {
   private messageContainer  = React.createRef<HTMLDivElement>();
+
+  state = {
+      showAddPost: false
+  };
 
   componentDidMount() {
     this.grabMessages(this.parseResponse);
@@ -21,14 +25,14 @@ export default class App extends React.Component {
   }
 
   render() {
+    const {showAddPost} = this.state;
+
     return (
       <div className="App">
+        {showAddPost && <AddPost togglePopup={this.togglePopup} />}
         <div className={"App-header"}>
             <h1>Microblogger</h1>
-            <button
-                className={"App-button"}>
-                <h3>Post</h3>
-            </button>
+            <Button onClick={this.togglePopup} label={"Post"}/>
         </div>
         <div className="App-container" ref={this.messageContainer} />
       </div>
@@ -38,10 +42,9 @@ export default class App extends React.Component {
 
   /** Is the best place to make the server request on Render */
   private readonly grabMessages = (callback: (request: string) => void) => {
-      // create the request
-      var request = new XMLHttpRequest();
+      let request = new XMLHttpRequest();
 
-      request.open('GET', 'https://jsonplaceholder.typicode.com/posts', true);
+      request.open('GET', 'https://jsonplaceholder.typicode.com/posts');
 
       request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
 
@@ -59,8 +62,7 @@ export default class App extends React.Component {
       request.onerror = function() {
         alert(`Network Error`);
       };
-
-  }
+  };
 
   private readonly parseResponse = (response: string) => {
     //check if array?
@@ -68,30 +70,21 @@ export default class App extends React.Component {
 
     if (this.messageContainer && this.messageContainer.current) {
         ReactDOM.render(
-        (<ul className={"App-postsContainer"}>
-            {jsonResponse.map(this.createPost)}
-        </ul>)
-        ,
-        this.messageContainer.current);
-
-
-
+            (<ul className={"App-postsContainer"}>
+                {
+                    jsonResponse.map((postProps: PostProps) => {
+                        return <Post {...postProps} key={postProps.id}/>;
+                    })
+                }
+            </ul>),
+            this.messageContainer.current);
     }
+  };
+
+  private readonly togglePopup = () => {
+    this.setState({
+        showAddPost: !this.state.showAddPost
+    });
   }
-
-  // figure out the accessibility here
-  private readonly createPost = (post: message) => {
-    return (
-        <li className={"App-postContainer"} key={post.id}>
-           <div className={"App-postHeader"}>
-            <h2 aria-label={post.title}> {post.title}</h2>
-            <h3 aria-label={`Username: ${post.userId}`}>Username: {post.userId}</h3>
-            </div>
-            <p aria-label={post.body} className={"App-postBody"}>{post.body}</p>
-        </li>
-    );
-
-  }
-
 }
 

@@ -1,0 +1,14 @@
+.Button {
+    background-color: #008CBA;
+    width: 72px;
+    height: 48px;
+    border-radius: 12px;
+    color: white;
+    border: none;
+}
+
+.Button:focus {
+    background-color: #4CAF50; /* Green */
+    text-decoration: none;
+    outline: none;
+}
