@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/Banner.css';
+import '../css/Banner.css';
 
 export interface ErrorProps {
     message: string;

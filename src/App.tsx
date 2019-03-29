@@ -3,7 +3,7 @@ import AddPost from "./AddPost";
 import './css/App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./Home";
-import Banner from "./Banner";
+import Banner from "./Banner/Banner";
 
 interface AppState {
     showBanner: boolean;
