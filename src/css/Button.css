@@ -12,3 +12,9 @@
     text-decoration: none;
     outline: none;
 }
+
+.Button-label{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

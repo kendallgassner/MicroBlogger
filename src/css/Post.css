@@ -1,4 +1,5 @@
 .Post-container {
+  color: white;
   display: block;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
   background-color: #393f4a;
@@ -11,4 +12,10 @@
 .Post-body {
     text-align: left;
     margin: 12px;
+}
+
+.Post-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

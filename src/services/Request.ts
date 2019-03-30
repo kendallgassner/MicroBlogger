@@ -7,7 +7,7 @@ export function getRequest(requestUri: string) {
     return new Promise((resolve, reject) => {
         const request = new XMLHttpRequest();
 
-        request.open("Get", requestUri);
+        request.open("Get", requestUri, true);
 
         request.onload = () => {
             if (request.status == 200) {
@@ -42,10 +42,11 @@ export function postRequest(
     data: string) {
     return new Promise((resolve, reject) => {
         const request = new XMLHttpRequest();
-        request.open("POST", requestUri);
+        request.open("POST", requestUri, true);
+        request.setRequestHeader('Content-type','application/json; charset=utf-8');
 
         request.onload = () => {
-            if (request.status == 200 || request.status == 201) {
+            if (request.status == 201 && request.readyState == 4) {
                 resolve("Success");
             }
             else {

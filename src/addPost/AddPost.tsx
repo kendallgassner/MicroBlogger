@@ -84,7 +84,12 @@ export default class AddPost extends React.Component<AddPostProps, AddPostState>
 
   private readonly createPostJson = () => {
     const {userId, title, body} = this.state;
-    return JSON.stringify({ "userId": userId,  "title": title,  "body": body});
+    const post: any = {};
+    post.userId = userId;
+    post.title = title;
+    post.body = body;
+
+    return JSON.stringify(post);
   };
 
   private readonly close = () => {
