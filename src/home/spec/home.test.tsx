@@ -24,6 +24,7 @@ describe("Home", () => {
         process.nextTick(() => {
             expect(subject.find(Home).html()).toContain('ul');
             done();
+            subject.unmount();
         })
     });
 

@@ -1,3 +1,8 @@
+/**
+ * Creates a GET XMLHttpRequest to receive data
+ * @param {string}   requestUri the uri to retrieve data from.
+ * @return {Promise} resolves if the GET Request was successful.
+ */
 export function getRequest(requestUri: string) {
     return new Promise((resolve, reject) => {
         const request = new XMLHttpRequest();
@@ -7,21 +12,17 @@ export function getRequest(requestUri: string) {
         request.onload = () => {
             if (request.status == 200) {
                 resolve(request.response);
-                //callback(request.response);
             }
             else {
-                //alert(`Loaded: ${request.status} ${request.statusText}`);
                 reject(`Loaded: ${request.status} ${request.statusText}`);
             }
         };
 
         request.onerror = () => {
-           // alert(`Network Error`);
             reject("Network Error");
         };
 
         request.ontimeout = () => {
-           // alert(`time out Error`);
             reject("timeout Error");
         };
 
@@ -30,7 +31,12 @@ export function getRequest(requestUri: string) {
     });
 };
 
-
+/**
+ * Creates a POST XMLHttpRequest to receive data
+ * @param {string}  requestUri the uri to send data to.
+ * @param {string}  data the content to send to the requestUri.
+ * @return {Promise} resolves if the POST Request was successful.
+ */
 export function postRequest(
     requestUri: string,
     data: string) {

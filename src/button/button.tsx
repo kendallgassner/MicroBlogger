@@ -2,9 +2,13 @@ import React from 'react';
 import '../css/Button.css';
 
 interface ButtonProps {
-    onClick?: () => void;
+    /** the text inside the button. */
     label: string;
+    /** The callback that will be called onClick and onKeyDown. */
+    onClick?: () => void;
+    /** the type of the button. */
     type?: "button"|"submit"|"reset";
+    /** The form the button is attached to. */
     form?: string;
 }
 
