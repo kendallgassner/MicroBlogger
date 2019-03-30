@@ -20,6 +20,7 @@ describe("Button", () => {
   it('renders Home initially', () => {
     const subject = mount(<App />);
     expect(subject.find(Home).length).toBe(1);
+    subject.unmount();
   });
 
   it('updateMock', () => {
@@ -28,6 +29,7 @@ describe("Button", () => {
     expect(subject.state('isError')).toBe(true);
     expect(subject.state('bannerMessage')).toBe('message');
     expect(subject.state('showBanner')).toBe(true);
+    subject.unmount();
   });
 
   it('closeBanner', done => {
@@ -39,6 +41,7 @@ describe("Button", () => {
       subject.find('Banner').find('button').simulate('click');
       expect(subject.find('Banner').length).toBe(0);
       done();
+      subject.unmount();
     });
   });
 

@@ -1,9 +1,10 @@
 import React from 'react';
-import './css/AddPost.css';
-import Button from "./button/button";
-import {postRequest} from "./services/Request";
+import '../css/AddPost.css';
+import Button from "../button/button";
+import {postRequest} from "../services/Request";
 
 export interface AddPostProps {
+  /** A function used to send updates to the notification banner */
   updateBanner: (message: string, isError: boolean) => void;
 
 }
@@ -93,8 +94,8 @@ export default class AddPost extends React.Component<AddPostProps, AddPostState>
     if (body.length < 10 || body.length > 140) {
       alert("Error character count must be >= 10 and <= 140");
       return;
-
     }
+
     else {
       postRequest('https://jsonplaceholder.typicode.com/posts', this.createPostJson()).then(
           successMessage  => {

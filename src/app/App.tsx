@@ -1,5 +1,5 @@
 import React from 'react';
-import AddPost from "../AddPost";
+import AddPost from "../addPost/AddPost";
 import '../css/App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "../home/Home";

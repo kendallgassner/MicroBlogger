@@ -5,6 +5,10 @@ import Banner from "../Banner";
 const closeBanner = jest.fn();
 
 describe("Banner", () => {
+    afterEach(() => {
+        closeBanner.mockReset();
+    });
+
     test("Renders as expected", () => {
         const subject = shallow(<Banner isError={true} closeBanner={closeBanner} message={"BannerTest"}/>);
         expect(subject.length).toBe(1);
@@ -16,10 +20,16 @@ describe("Banner", () => {
         expect(closeBanner).toBeCalled();
     });
 
-    test("closeBanner is called onKeyDown Button", () => {
+    test("closeBanner is called when the Enter is pressed", () => {
         const subject = shallow(<Banner isError={true} closeBanner={closeBanner} message={"BannerTest"}/>);
         subject.find('button').simulate('keyDown', {key: 'Enter'});
         expect(closeBanner).toBeCalled();
+    });
+
+    test("closeBanner is not called when non Enter key is pressed", () => {
+        const subject = shallow(<Banner isError={true} closeBanner={closeBanner} message={"BannerTest"}/>);
+        subject.find('button').simulate('keyDown', {key: 'tab'});
+        expect(closeBanner).not.toBeCalled();
     });
 
     test("isError is true", () => {

@@ -8,6 +8,7 @@ import {getRequest} from "../services/Request";
 
 
 interface HomeProps {
+    /** A function used to send updates to the notification banner */
     updateBanner: (message: string, isError: boolean) => void;
 }
 export default class Home extends React.Component<HomeProps>{
@@ -26,7 +27,7 @@ export default class Home extends React.Component<HomeProps>{
         );
     }
 
-    private readonly parseResponse = (response: string) => {
+    private readonly parseResponseForPosts = (response: string) => {
         const jsonResponse = JSON.parse(response);
             if (this.messageContainer && this.messageContainer.current) {
                 ReactDOM.render(
@@ -44,7 +45,7 @@ export default class Home extends React.Component<HomeProps>{
     private readonly requestData = () => {
         getRequest('https://jsonplaceholder.typicode.com/posts').then(
             request => {
-                this.parseResponse(request as string);
+                this.parseResponseForPosts(request as string);
             })
             .catch(errorMessage  => {
                 this.props.updateBanner(errorMessage, true);

@@ -2,9 +2,13 @@ import React from 'react';
 import '../css/Post.css';
 
 export interface PostProps {
+    /** owner who created the post. */
     userId: number;
+    /** unique id of the post. */
     id: number;
+    /** The title of the post. */
     title: string;
+    /** post content. */
     body: string;
 }
 
