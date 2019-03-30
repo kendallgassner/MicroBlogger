@@ -3,6 +3,9 @@ import '../css/AddPost.css';
 import Button from "../button/button";
 import {postRequest} from "../services/Request";
 
+const MAX_LENGTH = 140;
+const MIN_LENGTH = 10;
+
 export interface AddPostProps {
   /** A function used to send updates to the notification banner */
   updateBanner: (message: string, isError: boolean) => void;
@@ -55,7 +58,7 @@ export default class AddPost extends React.Component<AddPostProps, AddPostState>
             />
           </div>
         </form>
-          <h5>{body.length}/140</h5>
+          <h5  className={"AddPost-limitWarning"} >{body.length}/{MAX_LENGTH}</h5>
           <div className={"AddPost-buttonContainer"}>
             <Button
                 onClick={this.submit}
@@ -91,8 +94,8 @@ export default class AddPost extends React.Component<AddPostProps, AddPostState>
   private readonly submit = () => {
     const {body} = this.state;
 
-    if (body.length < 10 || body.length > 140) {
-      alert("Error character count must be >= 10 and <= 140");
+    if (body.length < MIN_LENGTH || body.length > MAX_LENGTH) {
+      alert(`Error character count must be >= ${MIN_LENGTH} and <= ${MAX_LENGTH}`);
       return;
     }
 
