@@ -20,8 +20,8 @@ export default class Post extends React.Component<PostProps> {
     return (
         <li className={"Post-container"}>
            <div>
-            <h2>{title}</h2>
-            <h3 >Username: {userId}</h3>
+            <h2 className={"Post-label"} title={title}>{title}</h2>
+            <h3 className={"Post-label"} title={`${userId}`}>Username: {userId}</h3>
             </div>
             <p className={"Post-body"}>{body}</p>
         </li>

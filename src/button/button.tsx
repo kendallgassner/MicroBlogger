@@ -24,7 +24,7 @@ export default class Button extends React.Component<ButtonProps> {
                 onClick={onClick}
                 onKeyDown={onClick? this.onKeyDown: undefined}
             >
-                <h3>{label}</h3>
+                <h3 className={"Button-label"} title={label}>{label}</h3>
             </button>
         );
     }

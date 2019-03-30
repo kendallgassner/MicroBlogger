@@ -23,7 +23,7 @@ export default class Banner extends React.Component<ErrorProps> {
                     role="alert"
                     aria-label={message}
                     aria-live={isError? 'assertive' : 'polite'}/>
-                <h3 className={"Banner-message"}>{message}</h3>
+                <h3 className={"Banner-message"} title={message}>{message}</h3>
                 <button
                     onClick={closeBanner}
                     className={"Banner-button"}
