@@ -68,15 +68,15 @@ export default class AddPost extends React.Component<AddPostProps, AddPostState>
     );
   }
 
-  private readonly usernameChange = (event: any) => {
+  private readonly usernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({userId: event.target.value});
   };
 
-  private readonly titleChange = (event: any) => {
+  private readonly titleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({title: event.target.value});
   };
 
-  private readonly textAreaChange = (event: any) => {
+  private readonly textAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.setState({body: event.target.value});
   };
 
