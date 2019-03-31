@@ -1,6 +1,6 @@
 {
   "arrowParens": "avoid",
-  "bracketSpacing": "false",
+  "bracketSpacing": false,
   "jsxBracketSameLine": false,
   "printWidth": 99,
   "proseWrap": "always",
