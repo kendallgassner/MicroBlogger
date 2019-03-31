@@ -21,16 +21,15 @@ export default class Banner extends React.Component<ErrorProps> {
         <h3 className={'Banner-message'} title={message}>
           {message}
         </h3>
-        <button onClick={closeBanner} className={'Banner-button'} onKeyDown={this.onKeyDown}>
+        <button
+          onClick={closeBanner}
+          aria-label={'exit'}
+          title={'exit'}
+          className={'Banner-button'}
+        >
           X
         </button>
       </div>
     );
   }
-
-  private readonly onKeyDown = (event: any) => {
-    if (event.key == 'Enter') {
-      this.props.closeBanner!();
-    }
-  };
 }

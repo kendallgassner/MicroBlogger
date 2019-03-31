@@ -17,23 +17,11 @@ export default class Button extends React.Component<ButtonProps> {
     const {label, onClick, type, form} = this.props;
 
     return (
-      <button
-        type={type}
-        form={form}
-        className={'Button'}
-        onClick={onClick}
-        onKeyDown={onClick ? this.onKeyDown : undefined}
-      >
+      <button type={type} form={form} className={'Button'} onClick={onClick}>
         <h3 className={'Button-label'} title={label}>
           {label}
         </h3>
       </button>
     );
   }
-
-  private readonly onKeyDown = (event: any) => {
-    if (event.key == 'Enter') {
-      this.props.onClick!();
-    }
-  };
 }
