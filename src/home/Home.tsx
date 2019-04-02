@@ -1,45 +1,44 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Post, {PostProps} from '../Post/Post';
+import Post, {PostProps} from '../post/Post';
 import '../css/Home.css';
 import {Link} from 'react-router-dom';
-import Button from '../button/button';
 import {getRequest} from '../services/Request';
+import PostList from '../postList/PostList';
 
 interface HomeProps {
   /** A function used to send updates to the notification banner */
   updateBanner: (message: string, isError: boolean) => void;
 }
-export default class Home extends React.Component<HomeProps> {
-  private messageContainer = React.createRef<HTMLDivElement>();
+
+interface HomeState {
+  postList: Array<PostProps>;
+}
+
+export default class Home extends React.Component<HomeProps, HomeState> {
+  state = {postList: []};
 
   componentDidMount() {
     this.requestData();
   }
 
   render() {
+    const {postList} = this.state;
     return (
       <div>
-        <Link to="/Post">
-          <Button label={'Post'} />
+        <Link to="/Post" className={'Home-Button'} role={'button'}>
+          <h3 className={'Home-Button-label'} title={'Post'}>
+            Post
+          </h3>
         </Link>
-        <div className={'Home'} ref={this.messageContainer} />
+
+        {postList.length > 0 && <PostList list={postList} />}
       </div>
     );
   }
 
   private readonly parseResponseForPosts = (response: string) => {
     const jsonResponse = JSON.parse(response);
-    if (this.messageContainer && this.messageContainer.current) {
-      ReactDOM.render(
-        <ul className={'Home-posts'}>
-          {jsonResponse.map((postProps: PostProps) => {
-            return <Post {...postProps} key={postProps.id} />;
-          })}
-        </ul>,
-        this.messageContainer.current
-      );
-    }
+    this.setState({postList: jsonResponse});
   };
 
   private readonly requestData = () => {
