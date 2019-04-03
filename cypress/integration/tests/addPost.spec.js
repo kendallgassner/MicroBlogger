@@ -1,8 +1,8 @@
 context('addPost', () => {
     beforeEach(() => {
         cy.visit('http://localhost:3000');
-        cy.get('button').click();
-    })
+        cy.get('a').click();
+    });
 
     it('Closing addPost navigates back to home', () => {
         cy.get('button:nth-of-type(2)').click();
